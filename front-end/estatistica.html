@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estatística</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header"><a href="/front-end/index.html"><img src="/assets/logo.png"alt=""></a></header>
     <h1>Estátistica</h1>
-    <label for="p1">p1:</label>
-    <input type="number" name="primeira prova"id="p1">
-    <label for="p2">p2:</label>
-    <input type="number" name="segunda prova"id="p2">
-    <label for="t1">t1:</label>
-    <input type="number" name="primeiro trabalho"id="t1">
-    <label for="t2">t2:</label>
-    <input type="number" name="segundo trabalho"id="t2">
-    <button id="botaoEnviar">Enviar</button>
-    <p id="resultadoDisplay"></p>
+    <hr>
+    <main class="mb-3>
+        <label for="p1">p1:</label>
+        <input type="number" class="form-control-sm" placeholder = "Nota:" name="primeira prova"id="p1">
+        <label for="p2">p2:</label>
+        <input type="number" class="form-control-sm" placeholder = "Nota:" name="segunda prova"id="p2">
+        <label for="t1">t1:</label>
+        <input type="number" class="form-control-sm" placeholder = "Nota:" name="primeiro trabalho"id="t1">
+        <label for="t2">t2:</label>
+        <input type="number" class="form-control-sm" placeholder = "Nota:" name="segundo trabalho"id="t2">
+
+        <button type="button" class="btn btn-outline-primary" id="botaoEnviar">Enviar</button>
+        <p id="resultadoDisplay"></p>
+    </main>
+    
     <script src="/back-end/calculoMedia.js"></script>
 </body>
 </html>
