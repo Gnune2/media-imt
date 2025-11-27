@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estatística</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header"><a href="/front-end/index.html"><img src="/assets/logo.png"alt=""></a></header>
     <h1>Estátistica</h1>
-    <p>p1</p>
+    <label for="p1">p1:</label>
     <input type="number" name="primeira prova"id="p1">
-    <p>p2</p>
+    <label for="p2">p2:</label>
     <input type="number" name="segunda prova"id="p2">
-    <p>t1</p>
-    <input type="text" name="primeiro trabalho"id="t1">
-    <p>t2</p>
-    <input type="text" name="segundo trabalho"id="t2">
+    <label for="t1">t1:</label>
+    <input type="number" name="primeiro trabalho"id="t1">
+    <label for="t2">t2:</label>
+    <input type="number" name="segundo trabalho"id="t2">
+    <button id="botaoEnviar">Enviar</button>
+    <p id="resultadoDisplay"></p>
+    <script src="/back-end/calculoMedia.js"></script>
 </body>
 </html>
