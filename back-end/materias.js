@@ -3,31 +3,31 @@ const materias = [
         id: 1,
         nome: "Matemática Discreta",
         imagem:"/assets/materias/matematicaDiscreta.png",
-        pagina:"/front-end/matematicaDiscreta.html"
+        pagina:"/front-end/materias/matematicaDiscreta.html"
     },
     {
         id: 2,
         nome: "Estatística",
         imagem:"/assets/materias/estatistica.png",
-        pagina:"/front-end/estatistica.html"
+        pagina:"/front-end/materias/estatistica.html"
     },
     {
         id: 3,
         nome: "Desenvolvimento Front-End",
         imagem:"/assets/materias/desenvolvimentoFrontEnd.png",
-        pagina:"/front-end/desenvolvimentoFrontEnd.html"
+        pagina:"/front-end/materias/desenvolvimentoFrontEnd.html"
     },
     {
         id: 4,
         nome: "UX",
         imagem:"/assets/materias/interfaceEExperienciaDoUsuario.png",
-        pagina:"/front-end/interfaceEExperienciaDoUsuario.html"
+        pagina:"/front-end/materias/interfaceEExperienciaDoUsuario.html"
     },
     {
         id: 5,
         nome: "Legislação e Ética",
         imagem:"/assets/materias/legislacaoEEtica.png",
-        pagina:"/front-end/legislacaoEEtica.html"
+        pagina:"/front-end/materias/legislacaoEEtica.html"
     }
 ];
 
