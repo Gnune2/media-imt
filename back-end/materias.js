@@ -39,7 +39,7 @@ function divMaterias(materias) {
         const card = document.getElementById('materias');
         const CardMateria = document.createElement("div");
         CardMateria.id = `materia-${materia.id}`;
-        CardMateria.className = "materias col-2 p-0 card h-100 d-flex flex-column";
+        CardMateria.className = "materias col-12 col-md-5 col-xl-2 m-2 p-0 card h-100 d-flex flex-column";
         // envia o card para o documento html
         if (card){
             card.appendChild(CardMateria);

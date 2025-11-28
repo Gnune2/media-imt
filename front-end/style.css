@@ -1,20 +1,22 @@
 :root {
-    --cor-header: #303A42;
-    --cor-fundo: #3a4147;
-    --cor-main: white;
+    --cor-header: #0c1014;
+    --cor-fundo: #1C252F;
+    --cor-main: #111D2B;
+    --cor-letra: white;
 }
 *{
     padding: 0;
     margin: 0;
+    color: var(--cor-letra);
 }
 body {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: var(--cor-fundo);
     width: 100%;
-    display: flex;
 }
 .header {
-    position: absolute;
     height: 10vh;
     display: flex;
     background-color: var(--cor-header);
@@ -26,22 +28,40 @@ body {
     height: auto; 
     width: auto;
 }
-.main-index {
+.main{
     text-align: center;
     background-color: var(--cor-main);
-    margin: auto;
-    height: 90vh;
+    margin: 0 auto;
+    height: auto;
+    min-height: 90vh;
     width: 70%;
     padding: 2em;
-    margin-bottom: 0;
+}
+.materias{
+    min-height: 250px;
+}
+img{
+    overflow-y: hidden;
 }
 #materias {
-    height: 350px;
+    min-height: 350px;
 }
-
-@media screen and ( max-width:400px){
+/* responsividade*/
+@media screen and (max-width:1400px){
+}
+@media screen and (max-width:1200px){
+}
+@media screen and (max-width:992px){
+}
+@media screen and (max-width:767px){
+}
+@media screen and (max-width:576px){
+    .materias {
+        width: 50%;
+    }
     .main-index {
         width: 100%;
     }  
 }
-
+@media screen and (max-width:400px){
+}
