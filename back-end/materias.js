@@ -2,27 +2,32 @@ const materias = [
     {
         id: 1,
         nome: "Matemática Discreta",
-        imagem:"/assets/materias/matematica-discreta.png",
+        imagem:"/assets/materias/matematicaDiscreta.png",
+        pagina:"/front-end/matematicaDiscreta.html"
     },
     {
         id: 2,
         nome: "Estatística",
         imagem:"/assets/materias/estatistica.png",
+        pagina:"/front-end/estatistica.html"
     },
     {
         id: 3,
         nome: "Desenvolvimento Front-End",
         imagem:"/assets/materias/desenvolvimentoFrontEnd.png",
+        pagina:"/front-end/desenvolvimentoFrontEnd.html"
     },
     {
         id: 4,
         nome: "UX",
         imagem:"/assets/materias/interfaceEExperienciaDoUsuario.png",
+        pagina:"/front-end/interfaceEExperienciaDoUsuario.html"
     },
     {
         id: 5,
         nome: "Legislação e Ética",
         imagem:"/assets/materias/legislacaoEEtica.png",
+        pagina:"/front-end/legislacaoEEtica.html"
     }
 ];
 
@@ -67,6 +72,7 @@ function divMaterias(materias) {
         const botaoLink = document.createElement("a");
         botaoLink.textContent = "Calcular Média"
         botaoLink.className = "btn btn-outline-primary btn-sm mt-auto"
+        botaoLink.href = `${materia.pagina}`
         if (botao){
             botao.appendChild(botaoLink);
         }
