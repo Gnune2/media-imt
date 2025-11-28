@@ -1,17 +1,28 @@
 :root {
     --cor-header: #303A42;
+    --cor-fundo: #3a4147;
+    --cor-main: white;
 }
 *{
     padding: 0;
     margin: 0;
 }
+a {
+    text-decoration: none;
+}
+a:hover {
+    opacity: 50%;
+}
 body {
     height: 100vh;
+    background-color: var(--cor-fundo);
+    width: 100%;
 }
 .header {
     height: 10vh;
     display: flex;
     background-color: var(--cor-header);
+    width: 100%;
 }
 .header img {
     max-width: 100%; 
@@ -19,6 +30,18 @@ body {
     height: auto; 
     width: auto;
 }
-.main {
+.main-index {
+    text-align: center;
+    background-color: var(--cor-main);
+    margin: auto;
     height: 100%;
+    width: 70%;
+    padding: 2em;
 }
+
+@media screen and ( max-width:400px){
+    .main-index {
+        width: 100%;
+    }  
+}
+
