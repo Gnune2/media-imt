@@ -60,3 +60,5 @@ const p = document.createElement("p");
 resultado.appendChild(p);
 p.className = "";
 p.id = "resultadoDisplay";
+
+document.title = `${materia}`;
