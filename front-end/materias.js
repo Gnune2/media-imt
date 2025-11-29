@@ -31,14 +31,14 @@ const materias = [
     }
 ];
 
-function divMaterias(materias) {
+function cardMaterias(materias) {
     
     for (const materia of materias) {
         // cria o card para receber a materia e da atributos a ela
         const card = document.getElementById('materias');
         const CardMateria = document.createElement("div");
         CardMateria.id = `materia-${materia.id}`;
-        CardMateria.className = "materias col-12 col-md-5 col-xl-2 m-2 p-0 card h-100 d-flex flex-column";
+        CardMateria.className = "materias col-12 col-md-5 col-xl-2 p-0 card d-flex flex-column mt-3 mb-5";
         // envia o card para o documento html
         if (card){
             card.appendChild(CardMateria);
@@ -77,9 +77,17 @@ function divMaterias(materias) {
         if (botao){
             botao.appendChild(botaoLink);
         }
+        //lógica para quebrar linha
+        const id = `${materia.id}`.at(-1)
+        if (id%2 == 0 ) {
+            const hr = document.getElementById("materias");
+            const linhaQuebra = document.createElement("hr");
+            linhaQuebra.className = "hrcards";
+            hr.appendChild(linhaQuebra);
+        }
     }   
 }
-divMaterias(materias);
+cardMaterias(materias);
 
 
 

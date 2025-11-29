@@ -31,11 +31,9 @@ body {
 .main{
     text-align: center;
     background-color: var(--cor-main);
-    margin: 0 auto;
-    height: auto;
-    min-height: 90vh;
-    width: 70%;
-    padding: 2em;
+    flex: 1;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 .materias{
     min-height: 250px;
@@ -44,24 +42,38 @@ img{
     overflow-y: hidden;
 }
 #materias {
-    min-height: 350px;
+    height: auto;       
+    display: flex;      
+    flex-wrap: wrap;
 }
 input{
     max-width: 200px;
     color: black
 }
+.hrcards {
+    display: none;
+}
 /* responsividade*/
 @media screen and (max-width:1400px){
 }
 @media screen and (max-width:1200px){
+    .hrcards {
+        display: block;
+    }
 }
 @media screen and (max-width:992px){
 }
 @media screen and (max-width:767px){
+    .materias {
+        max-width: 40%;
+    }
 }
 @media screen and (max-width:576px){
+    .hrcards {
+        display: none;
+    }
     .materias {
-        width: 50%;
+        max-width: 70%;
     }
     .main {
         width: 100%;
