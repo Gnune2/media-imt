@@ -40,7 +40,11 @@ for (const i of notas) {
     divNota.appendChild(input);
     input.type = "number";
     input.className = "form-control m-2";
-    input.placeholder = "Nota:"
+    input.placeholder = "0.0"
+    input.min = "0";
+    input.max = "10";
+    input.step = "0.1";
+    input.setAttribute("oninput","if(this.value > 10) this.value = 10; if(this.value < 0) this.value = 0;");
     if (i[0] === "p"){
         input.name = `${i[1]}ª prova`;
     }else{
@@ -55,12 +59,28 @@ botao.appendChild(botaoEnviar);
 botaoEnviar.type = "button"
 botaoEnviar.className = "btn btn-outline-primary mt-5";
 botaoEnviar.id = "botaoEnviar";
-botaoEnviar.textContent = "Enviar";
+botaoEnviar.textContent = "Calcular Média";
 // texto que mostra o resultado final
 const resultado = document.getElementById("container");
 const p = document.createElement("p");
 resultado.appendChild(p);
-p.className = "";
-p.id = "resultadoDisplay";
+p.className = "resultadoMedia fs-3 fw-bold mt-4";
+p.id = "resultadoDisplay"
 // atualiza nome da página
 document.title = `${materia}`;
+
+//melhora interação do scroll com o input
+const inputs = document.querySelectorAll('input');
+
+  inputs.forEach(input => {
+    input.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const passo = 0.5; 
+      let valorAtual = parseFloat(this.value) || 0;
+      if (e.deltaY < 0) {
+        this.value = Math.min(valorAtual + passo, 10).toFixed(1);
+      } else {
+        this.value = Math.max(valorAtual - passo, 0).toFixed(1);
+      }
+    });
+  });
