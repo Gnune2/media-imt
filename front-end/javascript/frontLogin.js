@@ -30,7 +30,7 @@ for (const i of emailsenha){
     email.appendChild(label);
     label.setAttribute("for",`${i}`);
     label.className = "form-label text-capitalize";
-    label.textContent = `${i}`;
+    label.textContent = `${i}:`;
     //adiciona input para email e senha
     const input = document.createElement("input");
     email.appendChild(input);
