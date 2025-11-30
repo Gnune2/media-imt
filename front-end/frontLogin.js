@@ -2,7 +2,8 @@
 const main = document.getElementById("main");
 const h1 = document.createElement("h1");
 main.appendChild(h1);
-h1.textContent = "login";
+h1.textContent = "Login";
+h1.id = "tituloLoginCadastro";
 //adiciona div container
 const divContainer = document.createElement("div")
 main.appendChild(divContainer);
@@ -46,26 +47,25 @@ for (const i of emailsenha){
     }
     
 }
-//adiciona botões de login e cadastro
-loginCadastro = ["Login","Cadastrar-se"]
-for (const j of loginCadastro){
+//adiciona botões de login
     const botao = document.createElement("button");
     form.appendChild(botao);
-    botao.type = "submit";
-    if (j === "Login") {
-        botao.className = "btn btn-primary me-2";
-        botao.id = "botaoLogin";
-    }else{
-        botao.className = "btn btn-outline-secondary";
-        botao.id = "botaoCadastro";
-    }
-    botao.textContent = `${j}`;
-}
-function cadastro(){
-    const botaoCadastro = document.getElementById("botaoCadastro");
+    botao.type = "button";
+    botao.className = "btn btn-primary me-2";
+    botao.id = "botaoLogin";
+    botao.textContent = "Login";
+//adiciona link para cadastro
+    const linkCadastro = document.createElement("a");
+    form.appendChild(linkCadastro);
+    linkCadastro.href = "#";
+    linkCadastro.id = "botaoCadastro";
+    linkCadastro.className = "btn btn-secondary";
+    linkCadastro.textContent = "Cadastrar-se";
 
-    }
-cadastro();
-
-    
+//funcao para botão botaoCadastro
+const botaoCadastro = document.getElementById("botaoLogin");
+function login(){
+    alert("Função de login ainda não implementada.");
+};
+botaoCadastro.addEventListener("click", login);
     
