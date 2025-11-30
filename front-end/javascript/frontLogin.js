@@ -34,7 +34,11 @@ for (const i of emailsenha){
     //adiciona input para email e senha
     const input = document.createElement("input");
     email.appendChild(input);
-    input.type = `${i}`;
+    if (i === "senha"){
+        input.type = "password";
+    }else{
+        input.type = `${i}`;
+    }
     input.className = "form-control m-auto";
     input.id = `${i}`;
     input.placeholder = `Seu ${i}`;

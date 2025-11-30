@@ -37,10 +37,11 @@ for (const i of emailsenha){
     input.type = `${i}`;
     input.id = `${i}`;
     input.placeholder = `${i}`;
-    if(i === "confirmar senha"){
-        input.type = "confirmarSenha";
+    if(i === "confirmar senha" || i === "senha"){
+        input.type = "password";
         label.setAttribute("for","confirmarSenha");
         input.id = "confirmarSenha";
+        input.type = "password";
     }
     if (i === "email") {
         input.setAttribute("autocomplete","email");
