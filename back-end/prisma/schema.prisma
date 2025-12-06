@@ -1,14 +1,29 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// back-end/prisma/schema.prisma
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+// 1. CONFIGURAÇÃO DA FONTE DE DADOS (DataSource)
+datasource db {
+  provider = "mongodb" // <-- DEVE SER 'mongodb'
+  url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "mongodb"
+// 2. GERADOR DO CLIENTE PRISMA (Generator)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 3. MODELOS (Models) - Adiciona o que definimos antes
+model Aluno {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  senha    String
+  nome     String
+  notas    Nota[] 
+}
+
+model Nota {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  disciplina   String
+  mediaFinal   Float
+  alunoId      String @db.ObjectId
+  aluno        Aluno  @relation(fields: [alunoId], references: [id])
 }
