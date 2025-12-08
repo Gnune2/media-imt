@@ -1,0 +1,12 @@
+{
+  "name": "media-imt",
+  "version": "1.0.0",
+  "description": "calcula médias das matérias",
+  "main": "/front-end/html/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["Medias, Notas, Faculdade"],
+  "author": "Guilherme Nunes",
+  "license": "MIT"
+}
