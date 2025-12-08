@@ -1,4 +1,3 @@
-//adiciona nome para a página dependendo da escolha do usuário (login/cadastro)
 const main = document.getElementById("main");
 const h1 = document.createElement("h1");
 main.appendChild(h1);
@@ -67,9 +66,4 @@ for (const i of emailsenha){
     linkLogin.id = "linkLogin";
     linkLogin.textContent = "Login";
 
-//funcao para botão botaoCadastro
-const botaoCadastro = document.getElementById("botaoCadastro");
-function login(){
-    alert("Função de login ainda não implementada.");
-};
-botaoCadastro.addEventListener("click", login);    
+// varre os dados inseridos pelo estudante e manda para o servidor
