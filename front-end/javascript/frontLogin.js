@@ -93,11 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.disabled = true;
         //envia dados para servidor
     try {
-        //requisição dos dados na porta localhost:3000/cadastro
+        //requisição dos dados na porta localhost:3000/login
         const response = await fetch(BACKEND_URL,{
             //especifica o metodo usando na porta pq o padrão é get
             method:"POST",
-            //explica que o tipó vai ser o json
+            //explica que o tipo vai ser o json
             headers: {
                 "Content-type": "application/json"
             },
@@ -107,9 +107,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json()
         //mostra a reposta para o cliente pelo front
         if (response.ok){
+            //guarda token no local storage do navegador
+            if(result.token) {
+                localStorage.setItem("authToken", result.token);
+                console.log("Token de Autenticação Salvo", result.token);
+            }
             //sim eu coloquei o emoji pra ficar mais legal
-            alert('✅ Sucesso! ' + result.massage)
-            // Redirecionar para a página de login após o cadastro
+            alert('✅' + result.massage + result.token)
+            // Redireciona para a página index
             window.location.href = '/front-end/html/index.html';
         }else{
             alert('❌ Erro no Login: ' + (result.error || 'Ocorreu um erro desconhecido.'));

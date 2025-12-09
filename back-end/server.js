@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
+const jwt = require('jsonwebtoken');
 
 // declara variaveis para as importações
 const app = express();
@@ -83,20 +84,32 @@ app.post("/login", async(req, res) =>{
             return res.status(401).json({error: "Email não encontrado"})
         }
         const isPasswordValid = await bcrypt.compare(password, student.password);
-        if(!isPasswordValid){
+        if(isPasswordValid){
+            const tokenPayLoad = {
+                studentId: student.id,
+                email: student.email,
+                name: student.studentName
+            };
+            const token = jwt.sign(
+                tokenPayLoad,
+                process.env.JWT_SECRET,
+                { expiresIn: '1h' }
+            );
+
+            res.status(200).json({
+                massage: "Login bem-sucedido! Bem-vindo(a).",
+                token: token,
+                student: {
+                    id: student.id,           
+                    username: student.studentName, 
+                    email: student.email, 
+                },
+            })
+        }else{
             return res.status(401),json({error: "Senha incorreta"})
         }
-        res.status(200).json({
-            massage: "Login bem-sucedido!",
-            student: {
-                id: student.id,           
-                username: student.username, 
-                email: student.email, 
-            },
-        })
     }catch (error){
         console.error('Erro no processo de login:', error);
         res.status(500).json({ error: 'Erro interno do servidor ao tentar fazer login.' });
     }
-    
 })
