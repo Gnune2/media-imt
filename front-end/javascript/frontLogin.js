@@ -73,20 +73,20 @@ BACKEND_URL = "http://localhost:3000/login"
 //espera o html carregar para excutar o código seguinte
 document.addEventListener("DOMContentLoaded", () => {
     //pega o formulário e atribui a uma variavel
-    const cadastroForm = document.getElementById("login-form");
+    const loginForm = document.getElementById("login-form");
     //função assincrona (envia dados para o servidor) que executa quando o botão submit é clicado
-    cadastroForm.addEventListener("submit", async(event) => {
+    loginForm.addEventListener("submit", async(event) => {
         //desabilita a função padrão dos botões submit que faz a página recarregar
         event.preventDefault();
         // função FormData que varre os dados do formulário
-        const formData = new FormData(cadastroForm);
+        const formData = new FormData(loginForm);
         //array que guarda os dados necassários da variavel que armazenou os dados puxados pelo FormData
         const studentData = {
             email: formData.get("email"),
             password: formData.get("senha")
         }
         //variavel amarzena o botão submit
-        const submitButton = cadastroForm.querySelector("button[type='submit']");
+        const submitButton = loginForm.querySelector("button[type='submit']");
         //feedback para o usúario
         submitButton.textContent = "A processar...";
         //desabilita botao enquanto servidor processa as informações para para evitar bugs 
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('🚨 Falha ao conectar ao servidor. Verifique se o backend está a correr (http://localhost:3000).' );
         } finally {
             //Restaura o Botão, independentemente do sucesso ou falha
-            submitButton.textContent = 'Cadastrar';
+            submitButton.textContent = 'Login';
             submitButton.disabled = false;
         }
     })
