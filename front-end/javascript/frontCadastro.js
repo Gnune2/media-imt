@@ -109,12 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Redirecionar para a página de login após o cadastro
                 window.location.href = '/front-end/html/login.html';
             }else{
-                lert('❌ Erro no Cadastro: ' + (result.error || 'Ocorreu um erro desconhecido.'));
+                alert('❌ Erro no Cadastro: ' + (result.error || 'Ocorreu um erro desconhecido.'));
             }
         } catch (error) {
             // erro na conexao
             console.error('Erro de conexão ou requisição:', error);
-            alert('🚨 Falha ao conectar ao servidor. Verifique se o backend está a correr (http://localhost:3000).');
+            alert('🚨 Falha ao conectar ao servidor. Verifique se o backend está a correr (http://localhost:3000).' );
         } finally {
             //Restaura o Botão, independentemente do sucesso ou falha
             submitButton.textContent = 'Cadastrar';
