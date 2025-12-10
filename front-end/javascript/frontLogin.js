@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             //mostra a reposta para o cliente pelo front
             //sim eu coloquei o emoji pra ficar mais legal
-            alert('✅' + result.massage + result.token)
+            alert('✅' + result.massage)
             // Redireciona para a página index
             window.location.href = '/front-end/html/index.html';
         }else{
