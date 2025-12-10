@@ -22,14 +22,15 @@ body {
     background-color: var(--cor-header);
     width: 100%;
     justify-content: space-between;
-    padding-inline-end: 2em;
+    padding-inline: 1.5em;
     align-items: center;
 }
-.header img {
-    max-width: 30%; 
-    max-height: 100%;
-    height: auto; 
-    width: auto;
+.header a {
+    display: flex;
+    position: relative;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .buttonProfile{
     background-color: transparent;
@@ -75,9 +76,6 @@ input{
     }
 }
 @media screen and (max-width:992px){
-    .header img {
-        max-width: 36%; 
-    }
 }
 @media screen and (max-width:767px){
     .materias {
@@ -94,9 +92,6 @@ input{
     .main {
         width: 100%;
     }  
-    .header img {
-        max-width: 56%; 
-    }
 }
 @media screen and (max-width:400px){
 }
