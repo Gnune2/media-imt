@@ -10,6 +10,9 @@ const prisma = new PrismaClient();
 const PORT = 3000;
 
 //middlewares
+//token
+//const authenticateToken = require('./authMiddleware'); 
+//cors
 const corsOptions = {
     origin: 'http://127.0.0.1:5500', // Apenas a sua origem frontend está permitida
     optionsSuccessStatus: 200 // Para navegadores mais antigos
@@ -122,3 +125,15 @@ app.post("/login", async(req, res) =>{
         res.status(500).json({ error: 'Erro interno do servidor ao tentar fazer login.' });
     }
 })
+//rota teste para middleware do token
+//Rota protegida: O Middleware é executado primeiro!
+app.get('/materiasStudent', authenticateToken, async (req, res) => {
+    // Se esta função for executada, o Token foi validado.
+    
+    // req.student contém os dados do Payload: { studentId, email, name }
+    
+    res.status(200).json({
+        message: `Acesso liberado. Bem-vindo, ${req.student.name}!`,
+        profile: req.student 
+    });
+});
