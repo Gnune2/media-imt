@@ -117,7 +117,7 @@ app.post("/login", async(req, res) =>{
             })
         }else{
             //se a senha não for validade erro 401 
-            return res.status(401),json({error: "Senha incorreta"})
+            return res.status(401).json({error: "Senha incorreta"})
         }
     }catch (error){
         // se for erro no servidor.
@@ -125,39 +125,43 @@ app.post("/login", async(req, res) =>{
         res.status(500).json({ error: 'Erro interno do servidor ao tentar fazer login.' });
     }
 })
-//rota teste para middleware do token
 //Rota protegida: O Middleware é executado primeiro!
 app.post('/materia', authenticateToken, async (req, res) => {
     // Se esta função for executada, o Token foi validado.
     const { name, image, assessments } = req.body;
-
+    //guarda id do estudante numa variavel
     const studentId = req.student.studentId;
-    
+    //se a matéria não tiver nome a requisição é rejeitada
     if(!name){
         return res.status(400).json({error: "O nome da matéria é obrigatório"})
     }
     try {
+        //tenta criar a matéria
         const newSubject = await prisma.subject.create({
+            //dados da matéria
             data: {
                 name: name,
                 image: image || "",
                 student: {
-                    connect: { id: studentId }
+                    connect: { id: studentId } //vincula a matéria ao aluno pelo token
                 },
                 assessments: {
-                    create: assessments
+                    create: assessments //cria as avaliações
                 }
             },
             include: {
-                assessments: true
+                assessments: true // adiciona as avaliações a matéria
             }
         })
+        //resposta do servidor se tudo der certo
         res.status(201).json({
             message: "Matéria criado com sucesso!",
             subject: newSubject
         })
     } catch (error) {
+        //se a tentativa der errado responde ao cliente como erro do servidor
         console.error("Erro ao criar matéria:", error);
         res.status(500).json({ error: "Erro interno ao salvar a matéria."})
     }
 });
+
