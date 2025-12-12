@@ -125,6 +125,7 @@ app.post("/login", async(req, res) =>{
         res.status(500).json({ error: 'Erro interno do servidor ao tentar fazer login.' });
     }
 })
+//rota para criar matéria
 //Rota protegida: O Middleware é executado primeiro!
 app.post('/materia', authenticateToken, async (req, res) => {
     // Se esta função for executada, o Token foi validado.
@@ -165,3 +166,22 @@ app.post('/materia', authenticateToken, async (req, res) => {
     }
 });
 
+//rota para receber as materias do estudante
+app.get("/materia", authenticateToken, async(req, res) => {
+    try{
+        const studentId = req.student.studentId;
+        const subjects= await prisma.subject.findMany({
+            where: {
+                studentId: studentId
+            },
+            include: {
+                assessments: true
+            }
+        })
+        res.status(200).json(subjects);
+    }catch (error){
+        console.error("Erro ao buscar matérias:", error);
+        res.status(500).json({error: "Erro interno ao buscar matérias."})
+    }
+    
+})

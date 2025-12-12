@@ -1,93 +1,93 @@
-const materias = [
-    {
-        id: 1,
-        nome: "Matemática Discreta",
-        imagem:"/assets/materias/matematicaDiscreta.png",
-        pagina:"/front-end/materias/matematicaDiscreta.html"
-    },
-    {
-        id: 2,
-        nome: "Estatística",
-        imagem:"/assets/materias/estatistica.png",
-        pagina:"/front-end/materias/estatistica.html"
-    },
-    {
-        id: 3,
-        nome: "Desenvolvimento Front-End",
-        imagem:"/assets/materias/desenvolvimentoFrontEnd.png",
-        pagina:"/front-end/materias/desenvolvimentoFrontEnd.html"
-    },
-    {
-        id: 4,
-        nome: "UX",
-        imagem:"/assets/materias/interfaceEExperienciaDoUsuario.png",
-        pagina:"/front-end/materias/interfaceEExperienciaDoUsuario.html"
-    },
-    {
-        id: 5,
-        nome: "Legislação e Ética",
-        imagem:"/assets/materias/legislacaoEEtica.png",
-        pagina:"/front-end/materias/legislacaoEEtica.html"
-    }
-];
+// Função principal que busca os dados e desenha na tela
+async function carregarMaterias() {
+    try {
+        // Agora usamos o fetchProtected direto!
+        // Não precisa passar headers, ele resolve sozinho.
+        const response = await window.fetchProtected('http://localhost:3000/materia');
 
+        if (!response.ok) {
+            throw new Error('Falha ao buscar matérias');
+        }
+
+        const materiasDoBanco = await response.json();
+
+        // Chama a função de desenhar os cards (mantemos a mesma de antes)
+        cardMaterias(materiasDoBanco);
+
+    } catch (error) {
+        console.error("Erro no fluxo:", error);
+        // O fetchProtected já trata o redirecionamento se for erro de token,
+        // aqui tratamos outros erros (ex: servidor desligado)
+    }
+}
+
+// ... (A função cardMaterias continua exatamente igual à anterior) ...
+
+// Inicializa
+document.addEventListener('DOMContentLoaded', carregarMaterias);
+
+// Função de criação dos Cards (Adaptada para os dados do Banco)
 function cardMaterias(materias) {
+    const cardContainer = document.getElementById('materias');
     
-    for (const materia of materias) {
-        // cria o card para receber a materia e da atributos a ela
-        const card = document.getElementById('materias');
+    // Limpa o container antes de adicionar para não duplicar se chamar 2x
+    if(cardContainer) cardContainer.innerHTML = ''; 
+
+    // Usamos o index para a lógica da quebra de linha <hr>
+    materias.forEach((materia, index) => {
+        
+        // --- Criação do Card ---
         const CardMateria = document.createElement("div");
         CardMateria.id = `materia-${materia.id}`;
         CardMateria.className = "materias col-12 col-md-5 col-xl-2 p-0 card d-flex flex-column mt-3 mb-5";
-        // envia o card para o documento html
-        if (card){
-            card.appendChild(CardMateria);
+        
+        if (cardContainer) {
+            cardContainer.appendChild(CardMateria);
         }
-        // recebe a imagem
-        const cardImagem = document.getElementById(`materia-${materia.id}`);
+
+        // --- Imagem ---
+        // Se não tiver imagem no banco, usa uma padrão
+        const imagemSrc = materia.image ? materia.image : '/assets/materias/padrao.png'; 
+        
         const imagem = document.createElement("img");
-        imagem.src = `${materia.imagem}`;
-        // manda imagem para o card no documento html
-        if (cardImagem) {
-            cardImagem.appendChild(imagem);
-        }
-        // cria a div corpo do card para o documento html
-        const bodyCard = document.getElementById(`materia-${materia.id}`);
+        imagem.src = imagemSrc;
+        imagem.className = "card-img-top"; // Classe bootstrap para imagem ficar bonita no card
+        imagem.alt = `Imagem de ${materia.name}`;
+        
+        CardMateria.appendChild(imagem);
+
+        // --- Corpo do Card ---
         const CardBodyMateria = document.createElement("div");
-        CardBodyMateria.id = `body-${materia.id}`;
-        CardBodyMateria.className = "card-body p-2 d-flex flex-column flex-grow-1 ";
-        if (bodyCard) {
-            bodyCard.appendChild(CardBodyMateria)
-        }
-        //nome da matéria
-        const nome = document.getElementById(CardBodyMateria.id);
+        CardBodyMateria.className = "card-body p-2 d-flex flex-column flex-grow-1";
+        CardMateria.appendChild(CardBodyMateria);
+
+        // --- Nome da Matéria (Ajustado para 'name' do banco) ---
         const nomeMateria = document.createElement("h5");
-        if(nome){
-            nome.appendChild(nomeMateria)
-        }
-        nomeMateria.textContent = `${materia.nome}`;
-        //botão que redireciona para a página da matéria escolhida
-        const botao = document.getElementById(CardBodyMateria.id);
+        nomeMateria.textContent = materia.name; // O banco retorna 'name', não 'nome'
+        CardBodyMateria.appendChild(nomeMateria);
+
+        // --- Botão ---
         const botaoLink = document.createElement("a");
-        botaoLink.textContent = "Calcular Média"
-        botaoLink.className = "btn btn-outline-primary btn-sm mt-auto btno"
-        botaoLink.id = `${materia.id}`
-        botaoLink.setAttribute("title",`${materia.nome}`);
-        botaoLink.href = "/front-end/html/calculoMedia.html";
-        if (botao){
-            botao.appendChild(botaoLink);
-        }
-        //lógica para quebrar linha
-        const id = `${materia.id}`.at(-1)
-        if (id%2 == 0 ) {
-            const hr = document.getElementById("materias");
+        botaoLink.textContent = "Calcular Média";
+        botaoLink.className = "btn btn-outline-primary btn-sm mt-auto btno";
+        botaoLink.id = materia.id;
+        botaoLink.setAttribute("title", materia.name);
+        
+        // IMPORTANTE: Passamos o ID via URL Parameter
+        botaoLink.href = `/front-end/html/calculoMedia.html?id=${materia.id}`;
+        
+        CardBodyMateria.appendChild(botaoLink);
+
+        // --- Lógica de Quebra de Linha (HR) ---
+        // Como o ID do banco agora é um texto longo (UUID), usamos o índice do array
+        // Se o índice + 1 for par, coloca a linha
+        if ((index + 1) % 2 === 0) {
             const linhaQuebra = document.createElement("hr");
             linhaQuebra.className = "hrcards";
-            hr.appendChild(linhaQuebra);
+            cardContainer.appendChild(linhaQuebra);
         }
-    }   
+    });
 }
-cardMaterias(materias);
 
-
-
+// Inicializa a busca quando a página carrega
+document.addEventListener('DOMContentLoaded', carregarMaterias);
