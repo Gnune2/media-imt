@@ -8,10 +8,10 @@ const authRoutes = require('./routes/authRoutes');
 const materiaRoutes = require('./routes/materiaRoutes');
 
 // Configurações Globais
-const corsOptions = {
-    origin: 'http://127.0.0.1:5500', 
-    optionsSuccessStatus: 200 
-};
+// const corsOptions = {
+//     origin: 'http://127.0.0.1:5500', 
+//     optionsSuccessStatus: 200 
+// };
 
 app.use(cors(corsOptions));
 app.use(express.json());
