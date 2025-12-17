@@ -26,20 +26,79 @@
 
     <!-- conteudo/main -->
     <main class="main" id="main"> 
-    <div class="container">
-        <div class="row d-flex justify-content-around text-center mb-4">
-            <h1>Tire as médias das suas notas!</h1>
-            <hr>
-            <h2>Escolha a matéria:</h2>
+        <div class="container">
+            <div class="row d-flex justify-content-around text-center mb-4">
+                <h1>Tire as médias das suas notas!</h1>
+                <hr>
+                <h2>Escolha a matéria:</h2>
+            </div>
+            <!-- Matérias são carregadas nessa div -->
+            <div class="row d-flex justify-content-around" id="materias">
+            </div>
+            <button type="button" class="btn btn-outline-primary" onclick="meuModal.showModal()">Nova matéria +</button>
         </div>
-        <!-- Matérias são carregadas nessa div -->
-        <div class="row d-flex justify-content-around" id="materias">
-        </div>
-    </div>
     </main>
-
-    <!-- scripts -->
-    <script src ="/public/javascript/materias.js"></script>
-    <script src ="/public/javascript/verificaMateria.js" defer></script>
+    
 </body>
+        <dialog id="meuModal">
+    <main>
+        <div class="container mt-5 text-white" style="max-width: 600px;">
+            <h2 class="text-center mb-4">Nova Matéria</h2>
+            
+            <form id="create-subject-form">
+                
+                <div class="mb-4">
+                    <label for="inputName" class="form-label">Nome da Disciplina</label>
+                    <input type="text" class="form-control" id="inputName" name="name" required placeholder="Ex: Física II">
+                </div>
+
+                <div class="mb-4">
+                    <label for="inputImage" class="form-label">URL do Ícone (Opcional)</label>
+                    <input type="url" class="form-control" id="inputImage" name="image" placeholder="https://...">
+                    <div class="form-text text-white-50">Cole o link de uma imagem ou deixe em branco.</div>
+                </div>
+
+                <hr class="my-4">
+
+                <h4 class="mb-3">Configuração de Notas</h4>
+                
+                <div id="notas">
+                    <fieldset class="border p-3 mb-3 rounded border-secondary">
+                    <legend class="float-none w-auto px-2 fs-6 text-info">Avaliação 1 (Ex: Provas)</legend>
+                    <div class="row g-2">
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="assessmentName1" value="Provas" placeholder="Nome">
+                        </div>
+                        <div class="col-4">
+                            <input type="number" class="form-control" name="assessmentWeight1" value="0.6" step="0.1" min="0" max="1" placeholder="Peso">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="border p-3 mb-4 rounded border-secondary">
+                    <legend class="float-none w-auto px-2 fs-6 text-info">Avaliação 2 (Ex: Trabalhos)</legend>
+                    <div class="row g-2">
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="assessmentName2" value="Trabalhos" placeholder="Nome">
+                        </div>
+                        <div class="col-4">
+                            <input type="number" class="form-control" name="assessmentWeight2" value="0.4" step="0.1" min="0" max="1" placeholder="Peso">
+                        </div>
+                    </div>
+                </fieldset>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <div><button type="button" class="btn btn-outline-primary ">Nova nota +</button></div>
+                    <hr class="my-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Criar Matéria</button>
+                    <button class="btn btn-outline-secondary" onclick="meuModal.close()">Cancelar</button>
+                </div>
+
+            </form>
+        </div>
+        </dialog>
+<!-- scripts -->
+<script src ="/public/javascript/materias.js"></script>
+<script src ="/public/javascript/verificaMateria.js" defer></script>
 </html>
