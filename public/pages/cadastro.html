@@ -10,9 +10,34 @@
     <link rel="shortcut icon" href="/public/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    
+    <!-- conteudo/main -->
     <main class="main" id="main">
-        <img src="/public/assets/logo.png"  alt="logo" class="col-10 col-md-4 mb-4 mt-4">
+        <img src="/public/assets/logo.png" alt="logo" class="col-10 col-md-4 mb-4 mt-4">
+        <h1>Cadastro</h1>
+
+        <!-- Formulário para se cadastrar -->
+        <div class="container col-12 mt-5 d-flex justify-content-center" id="container">
+            <form class="login form-floating col-8 col-sm-7 col-md-4 col-xl-3 p-4" id="cadastro-form">
+                <div id="divnome" class="mb-4">
+                    <label for="nome" class="form-label text-capitalize">nome:</label>
+                    <input class="form-control m-auto" type="nome" id="nome" placeholder="nome" name="nome" required="">
+                </div>
+                <div id="divemail" class="mb-3">
+                    <label for="email" class="form-label text-capitalize">email:</label>
+                    <input class="form-control m-auto" type="email" id="email" placeholder="email" name="email" required="" autocomplete="email">
+                </div>
+                <div id="divsenha" class="mb-4">
+                    <label for="senha" class="form-label text-capitalize">senha:</label>
+                    <input class="form-control m-auto" type="senha" id="senha" placeholder="senha" name="senha" required="">
+                </div>
+                <button id="botaoCadastro" class="btn btn-primary" type="submit">Cadastrar-se</button>
+                <a href="login.html" class="col-12 d-block text-center mt-3 link-secondary" id="linkLogin">Login</a>
+            </form>
+        </div>
     </main>
+
+    <!-- scripts -->
     <script src="/public/javascript/config.js"></script>
     <script src="/public/javascript/frontCadastro.js"></script> 
 </body>
