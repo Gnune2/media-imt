@@ -3,125 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>semDP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>semDP - Gestor de Notas</title>
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/public/css/style.css">
     <link rel="shortcut icon" href="/public/assets/favicon.ico" type="image/x-icon">
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    
     <script src="/public/javascript/config.js"></script>
     <script src="/public/javascript/token.js"></script>
     <script src="/public/javascript/frontIndex.js" defer></script>
 </head>
-<body>
+<body class="bg-dark text-white">
     
-    <header class="header">
-        <a href="/public/index.html" class="logo">
-            <img src="/public/assets/logo2.png" alt="logo" title="Página Inicial">
-        </a>
-        <a href="pages/perfil.html" class="perfil" id="fetch-profile">
-            <i class="fa-solid fa-user"></i>
-        </a>
+    <header class="header p-3 border-bottom border-secondary mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/public/index.html" class="logo">
+                <img src="/public/assets/logo2.png" alt="logo" style="height: 40px;">
+            </a>
+            <a href="pages/perfil.html" class="perfil text-white fs-4" id="fetch-profile">
+                <i class="fa-solid fa-circle-user"></i>
+            </a>
+        </div>
     </header>
 
     <main class="main" id="main"> 
         <div class="container">
-            <div class="row d-flex justify-content-around text-center mb-4">
-                <h1>Tire as médias das suas notas!</h1>
-                <hr>
-                <h2>Escolha a matéria:</h2>
+            <div class="row text-center mb-5">
+                <h1 class="display-5 fw-bold">semDP</h1>
+                <p class="lead text-secondary">Organiza as tuas notas e atinge as tuas metas.</p>
+                <hr class="border-secondary opacity-25 w-50 mx-auto">
             </div>
 
-            <div class="row d-flex justify-content-around" id="materias">
-                </div>
+            <div id="materias" class="row d-flex justify-content-center g-4"></div>
 
-            <div class="mt-5">
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="document.getElementById('meuModal').showModal()">
-                    <i class="fa-solid fa-plus"></i> Nova matéria
+            <div id="welcome-state" class="text-center py-5 d-none">
+                <div class="mb-4">
+                    <i class="fa-solid fa-book-open-reader fa-5x text-secondary opacity-50"></i>
+                </div>
+                <h2 class="text-white">Bem-vindo ao semDP!</h2>
+                <p class="text-secondary">Ainda não tens matérias registadas.</p>
+                <p class="text-info">Clica no botão abaixo para começar!</p>
+            </div>
+
+            <div class="mt-5 text-center">
+                <button type="button" class="btn btn-primary btn-lg px-5 shadow" onclick="document.getElementById('meuModal').showModal()">
+                    <i class="fa-solid fa-plus me-2"></i> Nova Matéria
                 </button>
             </div>
         </div>
     </main>
 
     <dialog id="meuModal">
-        <div class="container text-white" style="max-width: 500px;">
-            <h2 class="text-center mb-4">Nova Matéria</h2>
+        <div class="container text-white position-relative" style="max-width: 500px; padding-top: 30px;">
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3" 
+                aria-label="Close" onclick="this.closest('dialog').close()"></button>
+
+            <h2 class="text-center mb-4">Configurar Disciplina</h2>
             
-            <p class="text-white-50 small mb-3 text-start">* A soma dos pesos deve ser igual a 1.0</p>
-
             <form id="create-subject-form">
-                <div class="mb-4 text-start">
-                    <label for="inputName" class="form-label">Nome da Disciplina</label>
-                    <input type="text" class="form-control bg-dark text-white border-secondary" id="inputName" name="name" required placeholder="Ex: Cálculo II">
-                </div>
-                <div class="col-6 mb-4">
-                    <label for="inputPassGrade" class="form-label">Média para Passar</label>
-                    <input type="number" class="form-control bg-dark text-white border-secondary" id="inputPassGrade" name="passGrade" value="6.0" step="0.1" min="0" max="10" required>
-                </div>
-                <div class="mb-4 text-start">
-                    <label for="inputImage" class="form-label">URL do Ícone (Opcional)</label>
-                    <input type="url" class="form-control bg-dark text-white border-secondary" id="inputImage" name="image" placeholder="https://...">
+                <div class="row mb-3 text-start">
+                    <div class="col-7">
+                        <label class="form-label small">Nome da Cadeira</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="inputName" required placeholder="Ex: Programação I">
+                    </div>
+                    <div class="col-5">
+                        <label class="form-label small">Nota para Passar</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary" id="inputPassGrade" value="10.0" step="0.1" min="0" max="20" required>
+                    </div>
                 </div>
 
-                <hr class="my-4">
+                <div class="mb-4 text-start">
+                    <label class="form-label small">URL da Imagem (Opcional)</label>
+                    <input type="url" class="form-control bg-dark text-white border-secondary" id="inputImage" placeholder="https://...">
+                </div>
 
-                <h4 class="mb-3 text-start">Configuração de Notas</h4>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="m-0 text-info">Estrutura de Avaliação</h5>
+                    <button type="button" id="add-nota" class="btn btn-sm btn-outline-info">+ Add</button>
+                </div>
+                <p class="text-white-50 mb-3" style="font-size: 0.8rem;">* A soma dos pesos deve totalizar 1.0 (100%)</p>
                 
                 <div id="notas">
-                    <fieldset class="border p-3 mb-3 rounded border-secondary text-start">
-                        <legend class="float-none w-auto px-2 fs-6 text-info">Avaliação 1</legend>
-                        <div class="row g-2">
-                            <div class="col-8">
-                                <input type="text" class="form-control bg-dark text-white border-secondary" name="assessmentName" value="Provas" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="number" class="form-control bg-dark text-white border-secondary" name="assessmentWeight" value="0.6" step="0.1" min="0" max="1" required>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset class="border p-3 mb-3 rounded border-secondary text-start">
-                        <legend class="float-none w-auto px-2 fs-6 text-info">Avaliação 2</legend>
-                        <div class="row g-2">
-                            <div class="col-8">
-                                <input type="text" class="form-control bg-dark text-white border-secondary" name="assessmentName" value="Trabalhos" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="number" class="form-control bg-dark text-white border-secondary" name="assessmentWeight" value="0.4" step="0.1" min="0" max="1" required>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-
-                <div class="d-grid gap-2 mt-4">
-                    <button type="button" id="add-nota" class="btn btn-sm btn-outline-info mb-3">
-                        <i class="fa-solid fa-plus-circle"></i> Adicionar mais uma nota
-                    </button>
-                    <button type="submit" class="btn btn-primary">Criar Matéria</button>
-                    <button type="button" class="btn btn-link text-secondary" onclick="document.getElementById('meuModal').close()">Cancelar</button>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Criar Matéria</button>
                 </div>
             </form>
         </div>
     </dialog>
 
     <dialog id="modalNotas">
-        <div class="container text-white" style="max-width: 500px;">
-            <h2 id="tituloMateriaNota" class="text-center mb-4"></h2>
+        <div class="container text-white position-relative" style="max-width: 500px; padding-top: 30px;">
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3" 
+                aria-label="Close" onclick="this.closest('dialog').close()"></button>
+
+            <h2 id="tituloMateriaNota" class="text-center mb-4 text-primary fw-bold"></h2>
+            
             <form id="form-notas">
-                <div id="lista-notas-editar"></div>
-                <div class="text-center mt-4">
-                <h3 class="mb-0">Média Atual: <span id="mediaCalculada">0.0</span></h3>
-                <div id="statusPassar"></div> </div>
-                <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-success">Guardar Notas</button>
-                    <button type="button" class="btn btn-link text-secondary" onclick="document.getElementById('modalNotas').close()">Fechar</button>
+                <div class="scroll-container-wrapper">
+                    <div class="notas-scroll-area">
+                        <div id="lista-notas-editar"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 p-4 bg-black rounded-4 border border-secondary shadow-lg">
+                    <h3 class="mb-0 fs-2 fw-bold">Média: <span id="mediaCalculada">0.0</span></h3>
+                    <div id="statusPassar"></div>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-success btn-lg fw-bold">Guardar Alterações</button>
                 </div>
             </form>
         </div>
     </dialog>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/public/javascript/materias.js"></script>
 </body>
 </html>

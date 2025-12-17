@@ -14,4 +14,7 @@ router.get('/', authenticateToken, materiaController.listarMaterias);
 // Atualizar apenas as notas de uma matéria específica
 router.patch('/:id/notas', authenticateToken, materiaController.atualizarNotas);
 
+// EXCLUIR uma matéria específica (Adicione esta linha abaixo)
+router.delete('/:id', authenticateToken, materiaController.eliminarMateria);
+
 module.exports = router;

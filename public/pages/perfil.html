@@ -3,24 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>perfil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <title>Meu Perfil - semDP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="shortcut icon" href="/public/assets/favicon.ico" type="image/x-icon">
-    <script src="/public/javascript/token.js"></script>
 </head>
-<body>
-    <!-- cabeçalho -->
-    <header class="header">
-        <a href="/public/index.html" class = "logo">
-            <img src="/public/assets/logo2.png"alt="logo" title="Página Inicial">
-        </a>
+<body class="bg-dark text-white">
+    
+    <header class="p-3 border-bottom border-secondary mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/public/index.html" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+            <h4 class="m-0 text-primary">Meu Perfil</h4>
+            <button class="btn btn-danger btn-sm" id="btn-logout">Sair <i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
     </header>
-    <!-- conteudo/main -->
-    <main class="main" id="main">
-        <button id="btn-logout" class="btn btn-danger">Sair</button>
+
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div class="mb-4">
+                    <div class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                        <i class="fa-solid fa-user fa-3x"></i>
+                    </div>
+                    <h2 id="perfil-nome">Carregando...</h2>
+                    <p class="text-secondary" id="perfil-email">...</p>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="card bg-black border-secondary p-3">
+                            <h5 class="text-info">Matérias</h5>
+                            <h2 id="stat-total" class="mb-0">0</h2>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card bg-black border-secondary p-3">
+                            <h5 class="text-success">Concluídas</h5>
+                            <h2 id="stat-concluidas" class="mb-0">0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 d-grid">
+                    <button class="btn btn-outline-info" onclick="location.reload()">Atualizar Dados</button>
+                </div>
+            </div>
+        </div>
     </main>
-    <!-- scripts -->
+
+    <script src="/public/javascript/config.js"></script>
+    <script src="/public/javascript/token.js"></script>
+    <script src="/public/javascript/perfil.js"></script>
 </body>
 </html>

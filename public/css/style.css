@@ -3,19 +3,26 @@
     --cor-fundo: #1C252F;
     --cor-main: #111D2B;
     --cor-letra: white;
+    --cor-primaria: #0d6efd; /* Azul Bootstrap para consistência */
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
-    color: var(--cor-letra);
+    box-sizing: border-box;
 }
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--cor-fundo);
     width: 100%;
+    color: var(--cor-letra);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Header */
 .header {
     height: 10vh;
     display: flex;
@@ -24,123 +31,144 @@ body {
     justify-content: space-between;
     padding-inline: 1.5em;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.logo {
-    display: flex;
-    position: relative;
-    height: 100%;
+
+.logo img {
+    height: 50px;
+    object-fit: contain;
 }
-.perfil{
+
+.perfil i {
     font-size: 30px;
+    color: var(--cor-letra);
+    transition: transform 0.2s;
 }
-.main{
+
+.perfil i:hover {
+    transform: scale(1.1);
+}
+
+/* Main */
+.main {
     text-align: center;
     background-color: var(--cor-main);
     flex: 1;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding: 2em 1em;
 }
-.materias{
-    min-height: 250px;
-}
-img{
-    overflow-y: hidden;
-}
+
 #materias {
-    height: auto;       
-    display: flex;      
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
 }
-input{
-    max-width: 200px;
-    color: black
-}
-.hrcards {
-    display: none;
-}
-.login{
-    background-color: var(--cor-header);
-    border-radius: 20px;
-}
-/*nova matéria */
+
+/* Modal / Dialog */
 dialog {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     background-color: var(--cor-main);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 2em;
     width: 90%;
     max-width: 550px;
     max-height: 85vh;
-    overflow-y: auto;
     margin: auto;
+    color: white;
 }
 
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
 }
 
+dialog[open] {
+    animation: zoomIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Inputs dentro de Modais */
 dialog input {
-    max-width: 100% !important;
     background-color: #1c252f !important;
     border: 1px solid #30363d !important;
     color: white !important;
 }
 
-dialog[open] {
-    animation: zoomIn 0.3s ease-out;
+dialog input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
 }
 
-@keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-dialog::-webkit-scrollbar {
-    display: none;
-}
-
+/* Fechar Modal */
 .btn-close-white {
     filter: invert(1) grayscale(100%) brightness(200%);
-    opacity: 0.7;
-    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
 }
 
 .btn-close-white:hover {
     opacity: 1;
 }
 
-legend {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Efeito de Scroll Invisível com Fade (Sombra) */
+.scroll-container-wrapper {
+    position: relative;
+    /* Cria o efeito de "sumir" nas bordas superior e inferior */
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    padding: 10px 0;
 }
-/* responsividade*/
-@media screen and (max-width:1400px){
+
+.notas-scroll-area {
+    max-height: 300px; 
+    overflow-y: auto;
+    padding: 0 10px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
-@media screen and (max-width:1200px){
-    .hrcards {
-        display: block;
-    }
+
+.notas-scroll-area::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
-@media screen and (max-width:992px){
+
+/* Confete (Sempre à frente) */
+canvas {
+    z-index: 10000 !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
-@media screen and (max-width:767px){
-    .materias {
-        max-width: 40%;
-    }
+
+/* Boas-vindas (Empty State) */
+#welcome-state {
+    padding: 3rem;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
 }
-@media screen and (max-width:576px){
-    .hrcards {
-        display: none;
-    }
-    .materias {
-        max-width: 70%;
-    }
-    .main {
-        width: 100%;
-    }  
+
+#welcome-state i {
+    animation: float 3s ease-in-out infinite;
+    color: var(--cor-primaria);
 }
-@media screen and (max-width:400px){
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Responsividade */
+@media screen and (max-width: 767px) {
+    .main h1 { font-size: 1.5rem; }
+    dialog { padding: 1.5em; }
+}
+
+@media screen and (max-width: 576px) {
+    .header { padding-inline: 1em; }
+    .logo img { height: 35px; }
 }
