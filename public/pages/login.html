@@ -19,20 +19,23 @@
         <!-- Formulário para logar -->
         <div class="container col-12 mt-5 d-flex justify-content-center" id="container">
             <form class="login form-floating col-8 col-sm-7 col-md-4 col-xl-3 p-4" id="login-form">
-                <div id="divemail" class="mb-3">
-                    <label for="email" class="form-label text-capitalize">email:</label>
-                    <input type="email" class="form-control m-auto" id="email" placeholder="email" name="email" autocomplete="email" required="">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control m-auto" id="email" placeholder="email" name="email" autocomplete="email" required>
                 </div>
-                <div id="divsenha" class="mb-4">
-                    <label for="senha" class="form-label text-capitalize">senha:</label>
-                    <input type="password" class="form-control m-auto" id="senha" placeholder="senha" name="senha" autocomplete="current-password" required="">
+
+                <div class="mb-4">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" class="form-control m-auto" id="senha" placeholder="senha" name="senha" autocomplete="current-password" required>
                 </div>
+
                 <button type="submit" class="btn btn-primary" id="botaoLogin">Login</button>
+                
                 <a href="/public/pages/cadastro.html" id="linkCadastro" class="col-12 d-block text-center mt-3 link-secondary">Cadastrar-se</a>
             </form>
         </div>
     </main>
-    
+
     <!-- scripts -->
     <script src="/public/javascript/config.js"></script>
     <script src="/public/javascript/frontLogin.js"></script>
