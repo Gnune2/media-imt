@@ -27,7 +27,7 @@ window.fetchProtected = async function (url, options = {}) {
     if (response.status === 401 || response.status === 403) {
         alert("Sessão expirada. Faça login novamente.");
         localStorage.removeItem("token");
-        window.location.href = "/login.html";
+        window.location.href = "/public/pages/login.html";
         throw new Error("Sessão expirada");
     }
 

@@ -30,7 +30,7 @@ exports.cadastro = async (req, res) => {
         });
 
         res.status(201).json({
-            massage: "Registrado com Sucesso!",
+            message: "Registrado com Sucesso!",
             student: {
                 id: newStudent.id,
                 nome: newStudent.studentName,
@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
             );
 
             res.status(200).json({
-                massage: "Login bem-sucedido! Bem-vindo(a).",
+                message: "Login bem-sucedido! Bem-vindo(a).",
                 token: token,
                 student: {
                     id: student.id,
