@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 alert('✅ Sucesso! ' + result.message + "\nAgora faça o login");
                 // Redireciona para a página de login
-                window.location.href = '/public/pages/login.html'; // Verifique se este caminho está correto no seu servidor final
+                window.location.href = '../pages/login.html'; // Verifique se este caminho está correto no seu servidor final
             } else {
                 // Mostra o erro retornado pelo servidor (ex: "Email já utilizado")
                 alert('❌ Erro no Cadastro: ' + (result.error || 'Ocorreu um erro desconhecido.'));

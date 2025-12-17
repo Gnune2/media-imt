@@ -130,7 +130,7 @@ function criarCardMateria(materia) {
         classeBorda = "card-perigo";
     }
 
-    const imagemSrc = materia.image || '/public/assets/materias/padrao.png';
+    const imagemSrc = materia.image || '../assets/materias/padrao.png';
 
     div.innerHTML = `
         <div class="card h-100 bg-dark ${classeBorda} shadow materias-card" style="cursor: pointer;">

@@ -5,7 +5,7 @@ window.fetchProtected = async function (url, options = {}) {
     if (!token) {
         console.error("Token não encontrado.");
         // Opcional: Redirecionar para login automaticamente
-        window.location.href = "/public/pages/login.html"; 
+        window.location.href = "../pages/login.html"; 
         throw new Error('Usuário não autenticado.'); // "Error" com E maiúsculo
     }
 
@@ -27,7 +27,7 @@ window.fetchProtected = async function (url, options = {}) {
     if (response.status === 401 || response.status === 403) {
         alert("Sessão expirada. Faça login novamente.");
         localStorage.removeItem("token");
-        window.location.href = "/public/pages/login.html";
+        window.location.href = "../pages/login.html";
         throw new Error("Sessão expirada");
     }
 
@@ -42,7 +42,7 @@ function realizarLogout() {
     localStorage.removeItem("authToken"); // Por garantia, remove os dois nomes possíveis
 
     // 2. Redireciona para a página de login
-    window.location.href = "/public/pages/login.html"; // Ajuste o caminho se necessário
+    window.location.href = "../pages/login.html"; // Ajuste o caminho se necessário
 }
 
 // Adiciona o evento de clique ao botão quando a página carregar
