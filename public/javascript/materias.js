@@ -47,7 +47,7 @@ function cardMaterias(materias) {
 
         // --- Imagem ---
         // Se não tiver imagem no banco, usa uma padrão
-        const imagemSrc = materia.image ? materia.image : '/assets/materias/padrao.png'; 
+        const imagemSrc = materia.image ? materia.image : '/public/assets/materias/padrao.png';
         
         const imagem = document.createElement("img");
         imagem.src = imagemSrc;
@@ -75,7 +75,11 @@ function cardMaterias(materias) {
         
         // IMPORTANTE: Passamos o ID via URL Parameter
         botaoLink.href = `/public/pages/calculoMedia.html?id=${materia.id}`;
-        
+
+        botaoLink.addEventListener('click', () => {
+            localStorage.setItem("materiaEscolhida", materia.name);
+        });
+
         CardBodyMateria.appendChild(botaoLink);
 
         // --- Lógica de Quebra de Linha (HR) ---
