@@ -75,16 +75,5 @@ erDiagram
 ![Painel da Verdade](./screenshots/Screenshot_5.png)
 
 ---
-## 🚀 Como Iniciar
-
-1. **Instalação**: Instale todas as dependências do projeto executando `npm install` no terminal da pasta raiz.
-2. **Configuração**: Configure o arquivo `.env` (ou variáveis de ambiente no painel do host) com a sua `DATABASE_URL` do MongoDB/MySQL e o `JWT_SECRET` para autenticação.
-3. **Build**: Gere a pasta de produção executando `npm run build`. Certifique-se de que o `index.html` está na raiz para evitar erros de resolução.
-4. **Deploy**:
-   - Suba o conteúdo da pasta `dist` para a `public_html` da HostGator.
-   - Configure o arquivo `.htaccess` para suportar as rotas do Vite.
-   - Inicie o servidor Node.js através do painel "Setup Node.js App" do cPanel.
-
----
 
 **Desenvolvido por [Guilherme Nunes](https://github.com/seu-usuario).**
