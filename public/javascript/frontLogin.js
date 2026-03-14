@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //guarda token no local storage do navegador
             if(result.token) {
                 localStorage.setItem("authToken", result.token);
-                console.log("Token de Autenticação Salvo", result.token);
+                console.log("Token de Autenticação Salvo");
             }
             //mostra a reposta para o cliente pelo front
             //sim eu coloquei o emoji pra ficar mais legal
